@@ -36,8 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   TextField(
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0),),
                       hintText: "Add a new task",
+                      
                     ),
                   ),
                   Row()
@@ -55,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Color.fromARGB(255, 243, 241, 241),
         appBar: AppBar(
           elevation: 0,
-          title: Center(child: Text("To Do")),
+          title: Center(child: Text("T O D O  A P P")),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(40))),
         ),
