@@ -11,54 +11,67 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-List todoList = [
-  ["Make tutorials",false],
-   ["Bake a cake",false],
-];
+  List todoList = [
+    ["Make tutorials", false],
+    ["Bake a cake", false],
+  ];
 
-void checkBoxChanged(bool? value, int index){
-  setState(() {
-    todoList[index][1] = !todoList[index][1];
-  });
-}
-void createNewTask(){
-  showDialog(context: context, builder: ((context) {
-    return AlertDialog(
-      // title: "Create a new task",
-      content: Container(height: 120,
-      child: Column(
-        children: [
-          TextField(
-            decoration: InputDecoration(border: OutlineInputBorder(), hintText: "Add a new task",),
-          ),
-           Row(
+  void checkBoxChanged(bool? value, int index) {
+    setState(() {
+      todoList[index][1] = !todoList[index][1];
+    });
+  }
 
-           )
+  void createNewTask() {
+    showDialog(
+        context: context,
+        builder: ((context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12.0))),
+            // title: "Create a new task",
+            content: Container(
+              height: 120,
+              child: Column(
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Add a new task",
+                    ),
+                  ),
+                  Row()
+                ],
+              ),
+            ),
+            backgroundColor: Colors.white,
+          );
+        }));
+  }
 
-        ],
-      ),),
-      backgroundColor: Colors.green,
-      
-    );
-  }));
-}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.green[100],
+        backgroundColor: Color.fromARGB(255, 243, 241, 241),
         appBar: AppBar(
           elevation: 0,
           title: Center(child: Text("To Do")),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(40))),
         ),
-        floatingActionButton: FloatingActionButton(onPressed: createNewTask, child: Icon(Icons.add),),
+        floatingActionButton: FloatingActionButton(
+          onPressed: createNewTask,
+          child: Icon(Icons.add),
+        ),
         body: ListView.builder(
-            itemCount: todoList.length,
-            itemBuilder: (context, index) {
-              return TodoTile(taskCompleted: todoList[index][1], taskName: todoList[index][0], onChanged: (value)=> checkBoxChanged(value, index), );
-            },
+          itemCount: todoList.length,
+          itemBuilder: (context, index) {
+            return TodoTile(
+              taskCompleted: todoList[index][1],
+              taskName: todoList[index][0],
+              onChanged: (value) => checkBoxChanged(value, index),
+            );
+          },
         ));
   }
 }
-
-
-

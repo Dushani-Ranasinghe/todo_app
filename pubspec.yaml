@@ -27,7 +27,12 @@ flutter:
   fonts:
       - family: Raleway
         fonts:
-          - asset: lib/assets/fonts/Raleway-Regular.ttf
+          # - asset: lib/assets/fonts/Raleway-Regular.ttf
+          - asset: lib/assets/fonts/Raleway-Bold.ttf
+            # weight : 300
+      - family: Rubik
+        fonts:
+          - asset: lib/assets/fonts/Rubik-Regular.ttf
 
   # Material Icons font
   uses-material-design: true
