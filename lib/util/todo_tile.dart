@@ -1,0 +1,33 @@
+import 'package:flutter/material.dart';
+
+class TodoTile extends StatelessWidget {
+  late final String taskName;
+  late final bool taskCompleted;
+  // ( ↓ ) type of method that checklist required
+  final Function(bool?)? onChanged;
+
+  //create constructors for above variables
+  TodoTile(
+      {super.key,
+      required this.taskCompleted,
+      required this.taskName,
+      required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
+      child: Container(
+        padding: EdgeInsets.all(24.0),
+        decoration: BoxDecoration(
+            color: Colors.green, borderRadius: BorderRadius.circular(12)),
+        child: Row(
+          children: [
+            Checkbox(value: taskCompleted, onChanged: onChanged,activeColor: Colors.black,),
+            Text(taskName, style: TextStyle(decoration: taskCompleted ? TextDecoration.lineThrough : TextDecoration.none, fontSize: 17, fontFamily: 'Raleway'),),
+          ],
+        ),
+      ),
+    );
+  }
+}
