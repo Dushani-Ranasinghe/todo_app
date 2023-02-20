@@ -100,27 +100,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-//  return Scaffold(
-//         backgroundColor: Color.fromARGB(255, 243, 241, 241),
-//         appBar: AppBar(
-//           elevation: 0,
-//           title: Center(child: Text("T O D O  A P P")),
-//           shape: RoundedRectangleBorder(
-//               borderRadius: BorderRadius.vertical(bottom: Radius.circular(40))),
-//         ),
-//         floatingActionButton: FloatingActionButton(
-//           onPressed: createNewTask,
-//           child: Icon(Icons.add),
-//         ),
-//         body: ListView.builder(
-//           itemCount: db.todoList.length,
-//           itemBuilder: (context, index) {
-//             return TodoTile(
-//               taskCompleted: db.todoList[index][1],
-//               taskName: db.todoList[index][0],
-//               onChanged: (value) => checkBoxChanged(value, index),
-//               deleteTask: (context) => _deleteTask(index),
-//             );
-//           },
-//         ));
