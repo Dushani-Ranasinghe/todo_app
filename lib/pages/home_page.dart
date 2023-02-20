@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../util/new_task_dialog.dart';
 import '../util/todo_tile.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -11,41 +11,47 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //todo tasks list
   List todoList = [
     ["Make tutorials", false],
     ["Bake a cake", false],
   ];
+//text controller
+final _controller = TextEditingController();
 
+//check box was tapped
   void checkBoxChanged(bool? value, int index) {
     setState(() {
       todoList[index][1] = !todoList[index][1];
     });
   }
-
+//save 
+void saveTask(){
+  
+  setState(() {
+    //add task to list, 
+    todoList.add([_controller.text, false]);
+    //clear textbox
+    _controller.clear();
+    
+  } );
+   //close popup after saving task
+  Navigator.of(context).pop();
+}
+//delete task
+void _deleteTask(int index){
+  setState(() {
+    todoList.removeAt(index);
+  });
+}
   void createNewTask() {
     showDialog(
         context: context,
         builder: ((context) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(12.0))),
-            // title: "Create a new task",
-            content: Container(
-              height: 120,
-              child: Column(
-                children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0),),
-                      hintText: "Add a new task",
-                      
-                    ),
-                  ),
-                  Row()
-                ],
-              ),
-            ),
-            backgroundColor: Colors.white,
+          return DialogBox(
+            controller: _controller,
+            onCancel: () => Navigator.of(context).pop(),
+            onSave: saveTask,
           );
         }));
   }
@@ -71,6 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
               taskCompleted: todoList[index][1],
               taskName: todoList[index][0],
               onChanged: (value) => checkBoxChanged(value, index),
+              deleteTask: (context) => _deleteTask(index),
             );
           },
         ));
